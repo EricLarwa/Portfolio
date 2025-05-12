@@ -334,7 +334,7 @@ export default function Portfolio() {
                   tech: ['Python', 'PostgreSQL', 'MongoDB'],
                   image: eCommerce,
                   liveLink: '#',
-                  codeLink: '#'
+                  codeLink: 'https://github.com/EricLarwa/eCommerce-Analysis'
                 },
                 {
                   title: 'Smart Gym Companion',
@@ -342,7 +342,7 @@ export default function Portfolio() {
                   tech: ['React', 'Express.JS', 'SQLite3'],
                   image: Gym,
                   liveLink: '#',
-                  codeLink: '#'
+                  codeLink: 'https://github.com/ECU-SENG4235/group-project-smart-gym-companion-application'
                 },
                 {
                   title: 'Skill Sprint',
@@ -350,7 +350,7 @@ export default function Portfolio() {
                   tech: ['React', 'Flask', 'Python', 'SQLite3'],
                   image: SkillSprint,
                   liveLink: '#',
-                  codeLink: '#'
+                  codeLink: 'https://github.com/EricLarwa/SkillSprint'
                 }
               ].map((project, index) => (
                 <div key={index} className="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all group">
