@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import Eric from './assets/Eric.JPEG'
+import Eric from './assets/Eric2.jpg'
 import Gym from './assets/SmartGym.png'
 import eCommerce from './assets/eCommerce.png'
 import SkillSprint from './assets/SkillSprint.png'
