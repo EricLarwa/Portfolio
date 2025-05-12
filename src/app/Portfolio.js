@@ -4,7 +4,6 @@ import Eric from './assets/Eric.JPEG'
 import Gym from './assets/SmartGym.png'
 import eCommerce from './assets/eCommerce.png'
 import SkillSprint from './assets/SkillSprint.png'
-import Resume from '/Users/ericlarwa/Desktop/Test/port-page/public/Resume1.pdf'
 
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight, Mail, User, Code, Briefcase, FileText, Home } from 'lucide-react';
@@ -131,7 +130,7 @@ export default function Portfolio() {
               </button>
             ))}
             <a 
-              href={Resume}
+              href="/Resume1.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-1 bg-indigo-700 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
@@ -167,7 +166,7 @@ export default function Portfolio() {
                 </button>
               ))}
               <a 
-                href={Resume} 
+                href="/Resume1.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 bg-indigo-700 text-white px-4 py-2 rounded-md hover:bg-indigo-900 transition-colors"
