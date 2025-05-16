@@ -5,13 +5,15 @@ import Gym from './assets/SmartGym.png'
 import eCommerce from './assets/eCommerce.png'
 import SkillSprint from './assets/SkillSprint.png'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronRight, Mail, User, Code, Briefcase, FileText, Home } from 'lucide-react';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [skillsVisible, setSkillsVisible] = useState(false);
+  const sectionRef = useRef(null);
   const [contactForm, setContactForm] = useState({
     name: '',
     email: '',
@@ -29,6 +31,28 @@ export default function Portfolio() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSkillsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }), ([])
 
   const handleContactChange = (e) => {
     const { id, value } = e.target;
@@ -108,12 +132,10 @@ export default function Portfolio() {
         />
       </div>
 
-      {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full bg-white bg-opacity-90 shadow-sm z-40 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="text-xl font-bold text-indigo-700">Eric Larwa</div>
           
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             {sections.map((section) => (
               <button
@@ -130,7 +152,7 @@ export default function Portfolio() {
               </button>
             ))}
             <a 
-              href="/Resume1.pdf"
+              href="/EricResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-1 bg-indigo-700 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
@@ -166,7 +188,7 @@ export default function Portfolio() {
                 </button>
               ))}
               <a 
-                href="/Resume1.pdf"
+                href="/EricResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 bg-indigo-700 text-white px-4 py-2 rounded-md hover:bg-indigo-900 transition-colors"
@@ -190,10 +212,10 @@ export default function Portfolio() {
                 Hello, I&apos;m <span className="text-indigo-700">Eric Larwa</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-600 mb-6">
-                  Full Stack Developer with a passion for building exceptional web applications.
+                  Full Stack Developer building exceptional web applications.
                 </p>
                 <p className="text-gray-600 mb-8 max-w-lg">
-                  I specialize in creating responsive, modern web applications using JavaScript technologies like React.js, Node.js, and more.
+                  I specialize in creating responsive, modern web applications using JavaScript technologies like React.js, Next.js, and more.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <button 
@@ -246,10 +268,10 @@ export default function Portfolio() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
                 <p className="text-lg">
-                I&apos;m a passionate Full Stack Developer with expertise in building modern web applications. With a strong foundation in computer science, I bring creative solutions to complex problems.
+                I&apos;m a dynamic Full Stack Developer with expertise in building modern web applications. With a strong foundation in computer science, I bring creative solutions to complex problems.
                 </p>
                 <p className="text-lg">
-                  My journey in tech starts at East Carolina University, where I am earning my Bachelors degree in Software Engineering. Since then, I&apos;ve worked with various technologies and frameworks to deliver high-quality software solutions.
+                  My journey in tech starts at East Carolina University, where I am earning my Bachelors degree in Software Engineering. Since starting, I&apos;ve worked with various technologies and frameworks to deliver high-quality software solutions.
                 </p>
                 <p className="text-lg">
                   Beyond coding, I enjoy contributing to open-source projects, and staying up-to-date with the latest industry trends.
@@ -286,7 +308,7 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="skills" className="py-16 bg-gray-50">
+        <section id="skills" className="py-16 bg-gray-50" ref={sectionRef}>
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-2 text-center">Skills & Technologies</h2>
             <div className="w-24 h-1 bg-indigo-700 mx-auto mb-12"></div>
@@ -295,24 +317,20 @@ export default function Portfolio() {
               {[
                 { name: 'JavaScript', level: 90 },
                 { name: 'React.js', level: 95 },
-                { name: 'Node.js', level: 90 },
-                { name: 'TypeScript', level: 65 },
-                { name: 'HTML5/CSS3', level: 90 },
+                { name: 'Python', level: 90 },
+                { name: 'Next.js', level: 85 },
+                { name: 'C#', level: 80 },
                 { name: 'MongoDB', level: 70 },
                 { name: 'SQL', level: 85 },
                 { name: 'Git', level: 95 },
-                { name: '.NET', level: 60 },
-                { name: 'Docker', level: 50 },
-                { name: 'C#', level: 70 },
-                { name: 'Next.js', level: 85 },
               ].map((skill, index) => (
                 <div key={index} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <h3 className="font-medium mb-3">{skill.name}</h3>
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div 
-                      className="bg-indigo-700 h-2.5 rounded-full" 
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
+                  <div 
+                    className="bg-indigo-700 h-2.5 rounded-full transition-all duration-2300 ease-out"
+                    style={{ width: skillsVisible ? `${skill.level}%` : '0%' }}
+                  ></div>
                   </div>
                 </div>
               ))}
@@ -320,7 +338,6 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Projects Section */}
         <section id="projects" className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-2 text-center">Featured Projects</h2>
