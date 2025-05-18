@@ -1,16 +1,15 @@
 "use client";
 import Image from 'next/image';
 import Eric from './assets/Eric2.jpg'
-import Gym from './assets/SmartGym.png'
 import eCommerce from './assets/eCommerce.png'
 import SkillSprint from './assets/SkillSprint.png'
 import HourlyTrend from './assets/hourly_trend.svg'
 import purchase_funnel from './assets/purchase_funnel.svg'
-import Skills1 from './assets/skills1.png'
-import Skills2 from './assets/skills2.png'
-import Gym1 from './assets/gym1.png'
-import Gym2 from './assets/gym2.png'
-import Gym3 from './assets/gym3.png'
+import Skills1 from './assets/Skills1.png'
+import Skills2 from './assets/Skills2.png'
+import Gym1 from './assets/Gym1.png'
+import Gym2 from './assets/Gym2.png'
+import Gym3 from './assets/Gym3.png'
 
 
 import { useState, useEffect, useRef } from 'react';
