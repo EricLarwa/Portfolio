@@ -4,6 +4,14 @@ import Eric from './assets/Eric2.jpg'
 import Gym from './assets/SmartGym.png'
 import eCommerce from './assets/eCommerce.png'
 import SkillSprint from './assets/SkillSprint.png'
+import HourlyTrend from './assets/hourly_trend.svg'
+import purchase_funnel from './assets/purchase_funnel.svg'
+import Skills1 from './assets/skills1.png'
+import Skills2 from './assets/skills2.png'
+import Gym1 from './assets/gym1.png'
+import Gym2 from './assets/gym2.png'
+import Gym3 from './assets/gym3.png'
+
 
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronRight, Mail, User, Code, Briefcase, FileText, Home } from 'lucide-react';
@@ -13,6 +21,7 @@ export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [skillsVisible, setSkillsVisible] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const sectionRef = useRef(null);
   const [contactForm, setContactForm] = useState({
     name: '',
@@ -53,6 +62,16 @@ export default function Portfolio() {
       }
     };
   }), ([])
+
+  const openProject = (project) => {
+    setSelectedProject(project);
+    document.body.style.overflow = 'hidden';
+  }
+
+  const closeProject = () => {
+    setSelectedProject(null);
+    document.body.style.overflow = 'auto';
+  }
 
   const handleContactChange = (e) => {
     const { id, value } = e.target;
@@ -98,6 +117,52 @@ export default function Portfolio() {
     { id: 'projects', label: 'Projects', icon: <Briefcase size={18} /> },
     { id: 'contact', label: 'Contact', icon: <Mail size={18} /> },
   ];
+
+  const projects = [
+    {
+      title: 'E-Commerce Analysis',
+      description: 'Analysis of user behavior and sales data to improve the shopping experience.',
+      tech: ['Python', 'PostgreSQL', 'MongoDB'],
+      image: eCommerce,
+      additionalImages: [HourlyTrend, purchase_funnel],
+      liveLink: '#',
+      codeLink: 'https://github.com/EricLarwa/eCommerce-Analysis',
+      contributions: [
+        'Designed and implemented data processing pipelines for large-scale e-commerce datasets',
+        'Created interactive visualizations to identify shopping patterns and user journeys'
+      ]
+    },
+    {
+      title: 'Smart Gym Companion',
+      description: 'A web application that helps users track their workouts, nutrition, and progress over time.',
+      tech: ['React', 'Express.JS', 'SQLite3'],
+      image: Gym1,
+      additionalImages: [Gym2, Gym3],
+      liveLink: '#',
+      codeLink: 'https://github.com/ECU-SENG4235/group-project-smart-gym-companion-application',
+      contributions : [
+        'Developed a user-friendly interface for tracking workouts and nutrition',
+        'Implemented a RESTful API for data management and retrieval',
+        'Initialized a SQLite3 database to store user data securely',
+        'Created user authentication and authorization features to ensure data privacy'
+      ]
+    },
+    {
+      title: 'Skill Sprint',
+      description: 'Web application that allows users to track their skills and progress over time in Coding, Finance, or Languages',
+      tech: ['React', 'Flask', 'Python', 'SQLite3'],
+      image: SkillSprint,
+      additionalImages: [Skills1, Skills2],
+      liveLink: '#',
+      codeLink: 'https://github.com/EricLarwa/SkillSprint',
+      contributions: [
+        'Architected the full-stack application using React and Flask',
+        'Implemented the skill tracking and progress visualization system',
+        'Developed the gamification elements to increase user engagement and retention',
+        "Developed a coding sandbox feature to allow users to practice coding skills in a safe environment",
+      ]
+    }
+  ]
 
   const handleNavClick = (sectionId) => {
     setActiveSection(sectionId);
@@ -268,7 +333,7 @@ export default function Portfolio() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
                 <p className="text-lg">
-                I&apos;m a dynamic Full Stack Developer with expertise in building modern web applications. With a strong foundation in computer science, I bring creative solutions to complex problems.
+                I&apos;m a dynamic full stack developer with experience in building modern web applications. With a strong foundation in computer science, I bring creative solutions to complex problems.
                 </p>
                 <p className="text-lg">
                   My journey in tech starts at East Carolina University, where I am earning my Bachelors degree in Software Engineering. Since starting, I&apos;ve worked with various technologies and frameworks to deliver high-quality software solutions.
@@ -320,7 +385,7 @@ export default function Portfolio() {
                 { name: 'Python', level: 90 },
                 { name: 'Next.js', level: 85 },
                 { name: 'C#', level: 80 },
-                { name: 'MongoDB', level: 70 },
+                { name: 'MongoDB', level: 80 },
                 { name: 'SQL', level: 85 },
                 { name: 'Git', level: 95 },
               ].map((skill, index) => (
@@ -328,7 +393,7 @@ export default function Portfolio() {
                   <h3 className="font-medium mb-3">{skill.name}</h3>
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
                   <div 
-                    className="bg-indigo-700 h-2.5 rounded-full transition-all duration-2300 ease-out"
+                    className="bg-indigo-700 h-2.5 rounded-full transition-all duration-2000 ease-out"
                     style={{ width: skillsVisible ? `${skill.level}%` : '0%' }}
                   ></div>
                   </div>
@@ -339,38 +404,13 @@ export default function Portfolio() {
         </section>
 
         <section id="projects" className="py-16 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 cursor-pointer">
             <h2 className="text-3xl font-bold mb-2 text-center">Featured Projects</h2>
             <div className="w-24 h-1 bg-indigo-700 mx-auto mb-12"></div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  title: 'E-Commerce Analysis',
-                  description: 'Analysis of user behavior and sales data to improve the shopping experience.',
-                  tech: ['Python', 'PostgreSQL', 'MongoDB'],
-                  image: eCommerce,
-                  liveLink: '#',
-                  codeLink: 'https://github.com/EricLarwa/eCommerce-Analysis'
-                },
-                {
-                  title: 'Smart Gym Companion',
-                  description: 'A web application that helps users track their workouts, nutrition, and progress over time.',
-                  tech: ['React', 'Express.JS', 'SQLite3'],
-                  image: Gym,
-                  liveLink: '#',
-                  codeLink: 'https://github.com/ECU-SENG4235/group-project-smart-gym-companion-application'
-                },
-                {
-                  title: 'Skill Sprint',
-                  description: 'Web application that allows users to track their skills and progress over time in Coding, Finance, or Languages',
-                  tech: ['React', 'Flask', 'Python', 'SQLite3'],
-                  image: SkillSprint,
-                  liveLink: '#',
-                  codeLink: 'https://github.com/EricLarwa/SkillSprint'
-                }
-              ].map((project, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all group">
+              {projects.map((project, index) => (
+                <div key={index} className="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all group" onClick={() => openProject(project)}>
                   <div className="relative overflow-hidden h-48">
                   <Image 
                     src={project.image} 
@@ -396,6 +436,7 @@ export default function Portfolio() {
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex items-center space-x-1 text-sm text-indigo-700 hover:text-indigo-800"
+                        onClick={(e) => {e.stopPropagation()}}
                       >
                         <GithubIcon />
                         <span>Source Code</span>
@@ -406,6 +447,75 @@ export default function Portfolio() {
               ))}
             </div>
           </div>
+          
+          {selectedProject && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(5px)' }}>
+             <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto my-8 shadow-xl">
+              <div className="p-8">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-2xl font-bold">{selectedProject.title}</h2>
+                  <div className="flex items-center space-x-4">
+                    <a 
+                      href={selectedProject.codeLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-1 text-indigo-700 hover:text-indigo-800"
+                    >
+                      <GithubIcon size={20} />
+                      <span>GitHub</span>
+                    </a>
+                    <button 
+                      onClick={closeProject}
+                      className="text-gray-500 hover:text-gray-700"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold mb-2">Description</h3>
+                  <p className="text-gray-700">{selectedProject.fullDescription || selectedProject.description}</p>
+                </div>
+                
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold mb-2">Contributions</h3>
+                  <ul className="list-disc pl-5 text-gray-700">
+                    {selectedProject.contributions?.map((contribution, idx) => (
+                      <li key={idx}>{contribution}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold mb-3">Project Images</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="rounded-lg overflow-hidden shadow-md">
+                      <Image 
+                        src={selectedProject.image} 
+                        alt={selectedProject.title} 
+                        className="w-full h-auto object-cover" 
+                        width={600} 
+                        height={400} 
+                      />
+                    </div>
+                    {selectedProject.additionalImages?.map((img, idx) => (
+                      <div key={idx} className="rounded-lg overflow-hidden">
+                        <Image 
+                          src={img} 
+                          alt={`${selectedProject.title} screenshot ${idx + 1}`} 
+                          className="w-full h-auto object-cover" 
+                          width={600} 
+                          height={400} 
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         </section>
 
         {/* Contact Section */}
