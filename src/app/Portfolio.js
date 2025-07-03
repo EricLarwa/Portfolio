@@ -10,10 +10,14 @@ import Skills2 from './assets/Skills2.png'
 import Gym1 from './assets/Gym1.png'
 import Gym2 from './assets/Gym2.png'
 import Gym3 from './assets/Gym3.png'
+import HomeScreen from './assets/Home.png'
+import Logging from './assets/logging.png'
+import Tracking from './assets/Tracking.png'
+import Stats from './assets/stats.png'
 
 
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronRight, Mail, User, Code, Briefcase, FileText, Home } from 'lucide-react';
+import { Menu, X, ChevronRight, Mail, User, Code, Briefcase, FileText, Home, ExternalLink } from 'lucide-react';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
@@ -50,11 +54,11 @@ export default function Portfolio() {
       },
       { threshold: 0.4 }
     );
-    
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-    
+
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
@@ -82,7 +86,7 @@ export default function Portfolio() {
 
   const handleContactSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await fetch('/api/submit-form', {
         method: 'POST',
@@ -91,7 +95,7 @@ export default function Portfolio() {
         },
         body: JSON.stringify(contactForm),
       });
-      
+
       if (response.ok) {
         alert('Thank you for your message! I will get back to you soon.');
         setContactForm({
@@ -139,7 +143,7 @@ export default function Portfolio() {
       additionalImages: [Gym2, Gym3],
       liveLink: '#',
       codeLink: 'https://github.com/ECU-SENG4235/group-project-smart-gym-companion-application',
-      contributions : [
+      contributions: [
         'Developed a user-friendly interface for tracking workouts and nutrition',
         'Implemented a RESTful API for data management and retrieval',
         'Initialized a SQLite3 database to store user data securely',
@@ -159,6 +163,23 @@ export default function Portfolio() {
         'Implemented the skill tracking and progress visualization system',
         'Developed the gamification elements to increase user engagement and retention',
         "Developed a coding sandbox feature to allow users to practice coding skills in a safe environment",
+      ]
+    },
+    {
+      title: "glucoTrack",
+      description: "A web application that helps users track their glucose levels, diet, and exercise to manage diabetes effectively.",
+      tech: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Supabase', 'Chart.js'],
+      image: HomeScreen,
+      additionalImages: [Logging, Tracking, Stats],
+      liveLink: 'https://sup-ah.vercel.app/',
+      codeLink: 'https://github.com/EricLarwa/sup-ah',
+      contributions: [
+        'Developed a responsive web application using Next.js and Tailwind CSS',
+        'Implemented user authentication and data storage with Supabase',
+        'Created interactive charts using Chart.js to visualize glucose trends',
+        'Designed a user-friendly interface for logging meals and glucose levels',
+        'Integrated a notification system to remind users of their glucose checks and medication schedules',
+        'Created accesable preferences for users to customize their experience',
       ]
     }
   ]
@@ -190,8 +211,8 @@ export default function Portfolio() {
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
       {/* Progress bar */}
       <div className="fixed top-0 left-0 w-full h-1 z-50">
-        <div 
-          className="h-full bg-indigo-700 transition-all duration-300 ease-out" 
+        <div
+          className="h-full bg-indigo-700 transition-all duration-300 ease-out"
           style={{ width: `${scrollProgress * 100}%` }}
         />
       </div>
@@ -199,23 +220,22 @@ export default function Portfolio() {
       <nav className="fixed top-0 left-0 w-full bg-white bg-opacity-90 shadow-sm z-40 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="text-xl font-bold text-indigo-700">Eric Larwa</div>
-          
+
           <div className="hidden md:flex items-center space-x-6">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => handleNavClick(section.id)}
-                className={`flex items-center space-x-1 px-2 py-1 rounded-md transition-colors ${
-                  activeSection === section.id
-                    ? 'text-indigo-700 font-medium'
-                    : 'text-gray-600 hover:text-indigo-700'
-                }`}
+                className={`flex items-center space-x-1 px-2 py-1 rounded-md transition-colors ${activeSection === section.id
+                  ? 'text-indigo-700 font-medium'
+                  : 'text-gray-600 hover:text-indigo-700'
+                  }`}
               >
                 {section.icon}
                 <span className="hidden lg:inline">{section.label}</span>
               </button>
             ))}
-            <a 
+            <a
               href="/EricResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
@@ -225,7 +245,7 @@ export default function Portfolio() {
               <span>Resume</span>
             </a>
           </div>
-          
+
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden text-gray-600 hover:text-indigo-700 focus:outline-none"
@@ -233,7 +253,7 @@ export default function Portfolio() {
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-        
+
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-gray-100 py-2">
             <div className="container mx-auto px-4 flex flex-col space-y-2">
@@ -241,17 +261,16 @@ export default function Portfolio() {
                 <button
                   key={section.id}
                   onClick={() => handleNavClick(section.id)}
-                  className={`flex items-center space-x-2 px-2 py-2 rounded-md transition-colors ${
-                    activeSection === section.id
-                      ? 'text-indigo-700 font-medium bg-indigo-200'
-                      : 'text-gray-600 hover:text-indigo-700 hover:bg-gray-50'
-                  }`}
+                  className={`flex items-center space-x-2 px-2 py-2 rounded-md transition-colors ${activeSection === section.id
+                    ? 'text-indigo-700 font-medium bg-indigo-200'
+                    : 'text-gray-600 hover:text-indigo-700 hover:bg-gray-50'
+                    }`}
                 >
                   {section.icon}
                   <span>{section.label}</span>
                 </button>
               ))}
-              <a 
+              <a
                 href="/EricResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -273,7 +292,7 @@ export default function Portfolio() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="order-2 md:order-1">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                Hello, I&apos;m <span className="text-indigo-700">Eric Larwa</span>
+                  Hello 👋, I&apos;m <span className="text-indigo-700">Eric Larwa</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-600 mb-6">
                   Full Stack Developer building exceptional web applications.
@@ -282,14 +301,14 @@ export default function Portfolio() {
                   I specialize in creating responsive, modern web applications using JavaScript technologies like React.js, Next.js, and more.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <button 
+                  <button
                     onClick={() => handleNavClick('projects')}
                     className="flex items-center space-x-2 bg-indigo-700 text-white px-6 py-3 rounded-md hover:bg-indigo-900 transition-colors"
                   >
                     <span>See My Work</span>
                     <ChevronRight size={18} />
                   </button>
-                  <button 
+                  <button
                     onClick={() => handleNavClick('contact')}
                     className="flex items-center space-x-2 border border-indigo-700 text-indigo-700 px-6 py-3 rounded-md hover:bg-indigo-50 transition-colors"
                   >
@@ -310,13 +329,13 @@ export default function Portfolio() {
               </div>
               <div className="order-1 md:order-2 flex justify-center">
                 <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                <Image 
+                  <Image
                     src={Eric}
-                    alt="Eric Larwa" 
-                    className="w-full h-full object-cover" 
-                    width={400} 
-                    height={400} 
-                />
+                    alt="Eric Larwa"
+                    className="w-full h-full object-cover"
+                    width={400}
+                    height={400}
+                  />
                 </div>
               </div>
             </div>
@@ -328,11 +347,11 @@ export default function Portfolio() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-2 text-center">About Me</h2>
             <div className="w-24 h-1 bg-indigo-700 mx-auto mb-12"></div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
                 <p className="text-lg">
-                I&apos;m a dynamic full stack developer with experience in building modern web applications. With a strong foundation in computer science, I bring creative solutions to complex problems.
+                  I&apos;m a dynamic full stack developer with experience in building modern web applications. With a strong foundation in computer science, I bring creative solutions to complex problems.
                 </p>
                 <p className="text-lg">
                   My journey in tech starts at East Carolina University, where I am earning my Bachelors degree in Software Engineering. Since starting, I&apos;ve worked with various technologies and frameworks to deliver high-quality software solutions.
@@ -376,7 +395,7 @@ export default function Portfolio() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-2 text-center">Skills & Technologies</h2>
             <div className="w-24 h-1 bg-indigo-700 mx-auto mb-12"></div>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {[
                 { name: 'JavaScript', level: 90 },
@@ -391,10 +410,10 @@ export default function Portfolio() {
                 <div key={index} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <h3 className="font-medium mb-3">{skill.name}</h3>
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
-                  <div 
-                    className="bg-indigo-700 h-2.5 rounded-full transition-all duration-2000 ease-out"
-                    style={{ width: skillsVisible ? `${skill.level}%` : '0%' }}
-                  ></div>
+                    <div
+                      className="bg-indigo-700 h-2.5 rounded-full transition-all duration-2000 ease-out"
+                      style={{ width: skillsVisible ? `${skill.level}%` : '0%' }}
+                    ></div>
                   </div>
                 </div>
               ))}
@@ -406,18 +425,18 @@ export default function Portfolio() {
           <div className="container mx-auto px-4 cursor-pointer">
             <h2 className="text-3xl font-bold mb-2 text-center">Featured Projects</h2>
             <div className="w-24 h-1 bg-indigo-700 mx-auto mb-12"></div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
                 <div key={index} className="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all group" onClick={() => openProject(project)}>
                   <div className="relative overflow-hidden h-48">
-                  <Image 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                    width={600} 
-                    height={400} 
-                  />
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      width={600}
+                      height={400}
+                    />
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
@@ -430,91 +449,114 @@ export default function Portfolio() {
                       ))}
                     </div>
                     <div className="flex space-x-3">
-                      <a 
-                        href={project.codeLink} 
-                        target="_blank" 
+                      <a
+                        href={project.codeLink}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center space-x-1 text-sm text-indigo-700 hover:text-indigo-800"
-                        onClick={(e) => {e.stopPropagation()}}
+                        onClick={(e) => { e.stopPropagation() }}
                       >
                         <GithubIcon />
                         <span>Source Code</span>
                       </a>
+                      {project.liveLink && project.liveLink !== '#' && (
+                        <a
+                          href={project.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center space-x-1 text-sm text-green-700 hover:text-green-800"
+                          onClick={(e) => { e.stopPropagation() }}
+                        >
+                          <ExternalLink size={18} />
+                          <span>Live Demo</span>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          
+
           {selectedProject && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(5px)' }}>
-             <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto my-8 shadow-xl">
-              <div className="p-8">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold">{selectedProject.title}</h2>
-                  <div className="flex items-center space-x-4">
-                    <a 
-                      href={selectedProject.codeLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center space-x-1 text-indigo-700 hover:text-indigo-800"
-                    >
-                      <GithubIcon size={20} />
-                      <span>GitHub</span>
-                    </a>
-                    <button 
-                      onClick={closeProject}
-                      className="text-gray-500 hover:text-gray-700"
-                    >
-                      <X size={24} />
-                    </button>
-                  </div>
-                </div>
-                
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-2">Description</h3>
-                  <p className="text-gray-700">{selectedProject.fullDescription || selectedProject.description}</p>
-                </div>
-                
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-2">Contributions</h3>
-                  <ul className="list-disc pl-5 text-gray-700">
-                    {selectedProject.contributions?.map((contribution, idx) => (
-                      <li key={idx}>{contribution}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold mb-3">Project Images</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="rounded-lg overflow-hidden shadow-md">
-                      <Image 
-                        src={selectedProject.image} 
-                        alt={selectedProject.title} 
-                        className="w-full h-auto object-cover" 
-                        width={600} 
-                        height={400} 
-                      />
+              <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto my-8 shadow-xl">
+                <div className="p-8">
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold">{selectedProject.title}</h2>
+                    <div className="flex items-center space-x-4">
+                      <a
+                        href={selectedProject.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-1 text-indigo-700 hover:text-indigo-800"
+                      >
+                        <GithubIcon size={20} />
+                        <span>GitHub</span>
+                      </a>
+                      {selectedProject.liveLink && selectedProject.liveLink !== '#' && (
+                        <a
+                          href={selectedProject.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center space-x-1 text-green-700 hover:text-green-800"
+                        >
+                          <ExternalLink size={20} />
+                          <span>Live Demo</span>
+                        </a>
+                      )}
+                      <button
+                        onClick={closeProject}
+                        className="text-gray-500 hover:text-gray-700"
+                      >
+                        <X size={24} />
+                      </button>
                     </div>
-                    {selectedProject.additionalImages?.map((img, idx) => (
-                      <div key={idx} className="rounded-lg overflow-hidden">
-                        <Image 
-                          src={img} 
-                          alt={`${selectedProject.title} screenshot ${idx + 1}`} 
-                          className="w-full h-auto object-cover" 
-                          width={600} 
-                          height={400} 
+                  </div>
+
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold mb-2">Description</h3>
+                    <p className="text-gray-700">{selectedProject.fullDescription || selectedProject.description}</p>
+                  </div>
+
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold mb-2">Contributions</h3>
+                    <ul className="list-disc pl-5 text-gray-700">
+                      {selectedProject.contributions?.map((contribution, idx) => (
+                        <li key={idx}>{contribution}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3">Project Images</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="rounded-lg overflow-hidden shadow-md">
+                        <Image
+                          src={selectedProject.image}
+                          alt={selectedProject.title}
+                          className="w-full h-auto object-cover"
+                          width={600}
+                          height={400}
                         />
                       </div>
-                    ))}
+                      {selectedProject.additionalImages?.map((img, idx) => (
+                        <div key={idx} className="rounded-lg overflow-hidden">
+                          <Image
+                            src={img}
+                            alt={`${selectedProject.title} screenshot ${idx + 1}`}
+                            className="w-full h-auto object-cover"
+                            width={600}
+                            height={400}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
         </section>
 
         {/* Contact Section */}
@@ -522,7 +564,7 @@ export default function Portfolio() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-2 text-center">Get In Touch</h2>
             <div className="w-24 h-1 bg-indigo-700 mx-auto mb-12"></div>
-            
+
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <p className="text-lg">
@@ -547,15 +589,15 @@ export default function Portfolio() {
                   </a>
                 </div>
               </div>
-              
+
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-gray-700 mb-1">Name</label>
-                      <input 
-                        type="text" 
-                        id="name" 
+                      <input
+                        type="text"
+                        id="name"
                         value={contactForm.name}
                         onChange={handleContactChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:border-transparent"
@@ -564,9 +606,9 @@ export default function Portfolio() {
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-gray-700 mb-1">Email</label>
-                      <input 
-                        type="email" 
-                        id="email" 
+                      <input
+                        type="email"
+                        id="email"
                         value={contactForm.email}
                         onChange={handleContactChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:border-transparent"
@@ -576,9 +618,9 @@ export default function Portfolio() {
                   </div>
                   <div>
                     <label htmlFor="subject" className="block text-gray-700 mb-1">Subject</label>
-                    <input 
-                      type="text" 
-                      id="subject" 
+                    <input
+                      type="text"
+                      id="subject"
                       value={contactForm.subject}
                       onChange={handleContactChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:border-transparent"
@@ -587,16 +629,16 @@ export default function Portfolio() {
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-gray-700 mb-1">Message</label>
-                    <textarea 
-                      id="message" 
-                      rows="5" 
+                    <textarea
+                      id="message"
+                      rows="5"
                       value={contactForm.message}
                       onChange={handleContactChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:border-transparent"
                       placeholder="Your message here..."
                     ></textarea>
                   </div>
-                  <button 
+                  <button
                     onClick={handleContactSubmit}
                     className="w-full bg-indigo-700 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors"
                   >
