@@ -236,7 +236,7 @@ export default function Portfolio() {
               </button>
             ))}
             <a
-              href="/EricResume.pdf"
+              href="/updatedResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-1 bg-indigo-700 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
@@ -376,11 +376,11 @@ export default function Portfolio() {
                   <div className="space-y-4">
                     <div>
                       <div className="font-medium">Data Analyst</div>
-                      <div className="text-gray-600">Personal Work</div>
+                      <div className="text-gray-600">Airboss Rubber Solutions</div>
                       <div className="text-sm text-gray-500">2025 - Present</div>
                     </div>
                     <div>
-                      <div className="font-medium">Web Developer</div>
+                      <div className="font-medium">Web / Mobile Developer</div>
                       <div className="text-gray-600">Personal Work</div>
                       <div className="text-sm text-gray-500">2022 - Present</div>
                     </div>
