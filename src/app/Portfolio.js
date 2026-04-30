@@ -14,6 +14,11 @@ import HomeScreen from './assets/Home.png'
 import Logging from './assets/logging.png'
 import Tracking from './assets/Tracking.png'
 import Stats from './assets/stats.png'
+import OSLanding from './assets/OSLanding.png'
+import OSClients from './assets/OSClients.png'
+import OSDash from './assets/OSDash.png'
+import OSReports from './assets/OSReports.png'
+import OSInvoice from './assets/OSInvoice.png'
 
 
 import { useState, useEffect, useRef } from 'react';
@@ -122,6 +127,24 @@ export default function Portfolio() {
   ];
 
   const projects = [
+    {
+      title: 'FinanceOS',
+      description: 'A financial management platform that provides users with tools to track expenses, create budgets, and visualize their financial health.',
+      tech: ['React', 'Node.js', 'TypeScript', 'Express', 'Prisma'],
+      image: OSLanding,
+      additionalImages: [OSClients, OSDash, OSReports, OSInvoice],
+      liveLink: 'https://financingos.vercel.app/',
+      codeLink: 'https://github.com/EricLarwa/CDX-Challenge',
+      contributions: [
+        'Developed a comprehensive financial management system with real-time data visualization',
+        'Implemented a robust API layer using Node.js and Express for seamless integration',
+        'Designed and optimized database schemas with Prisma to ensure efficient data retrieval',
+        'Created a user-friendly interface with React and TypeScript, enhancing user experience and engagement',
+        'Integrated third-party APIs for real-time financial data and insights',
+        'integrated Claude AI to provide users with personalized financial advice and insights based on their spending habits and financial goals'
+      ]
+
+    },
     {
       title: 'E-Commerce Analysis',
       description: 'Analysis of user behavior and sales data to improve the shopping experience.',
